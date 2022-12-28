@@ -7,38 +7,39 @@
     <title>Document</title>
     <script src="./vue.js"></script>
 </head>
+
 <body>
     <div id="app">
-        {{mensagem}}
-        <p v-bind:class=" 1 == 1 ? 'azul': cor1">Escolhendo fundo</p>
+        <button v-on:click="mostraAlert">Botão</button>
+        <input type="text" @keyup="mostraConsole">
+        <input type="text" @keyup="mostraConsole2( 'Rayane', 19, xyz)">
     </div>
 
     <style>
-        .negrito {
-            font-weight: bold;
-        }
-
-        .verde{
-            background-color: green;
-        }
-
-        .azul{
-            background-color: blue;
-        }
     </style>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                mensagem: 'Oi, Ray',
-                cor1: 'verde',
-                cor2: 'azul'
-                
+                xyz: 'Dev em Vue'
             },
-            methods: {}
+            methods: {
+                mostraAlert(){
+                    alert('Mensagem de alerta')
+                },
+                mostraConsole(){
+                    console.log('Duda feia')
+                },
+                mostraConsole2( a, b){
+                    console.log(a),
+                    console.log(b),
+                    console.log(this.xyz)
+                }
+            }
         })
-
+//Passando Parâmetros no Vue é igual da função!
+//Mas pq o this.xyz foi usado? foi usado porque eu esou chamando um atributo em 'data' e não um parâmetro direto no methods e input
     </script>
 </body>
 </html>
