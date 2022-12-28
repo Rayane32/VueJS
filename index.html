@@ -8,49 +8,30 @@
     <script src="./vue.js"></script>
 </head>
 <body>
-    <h1>Simbora feiaaa</h1>
-    <p id="App">
-        {{ somar() }} <br>
-        {{ subtrair() }}<br>
-        {{ multiplicar() }}<br>
-        {{ dividir() }}
-    </p> 
-    <input type="checkbox" @click="check">
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="instrucaoDePreenchimento" v-bind:value="valor">
+        <input type="text" v-bind:placeholder="place">
+        <input type="checkbox" v-bind:checked="check">
+        
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                site: 'https://jorgesantana.net.br',
+                cor: 'verde',
+                instrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+                valor: 'Entendendo a diretiva v-bind',
+                check: true,
+                place: 'Rayfeia',
+            },
+            methods: {}
+        })
+
+    </script>
 </body>
-
-<script>
-    new Vue({
-            el: '#App', //usa o # para id e . para class, só pra chamar
-            data: //variável/atributo que vai guardar outras variáveis
-            {
-                mensagem: 'Rayane ta começando',
-                n1: 6,
-                n2: 10,
-                check: true + 'ola rayane'
-            },
-            methods: {
-                somar: function somar(){ //modo convencional
-                    return this.n1 + this.n2;
-                },
-                subtrair:  function(){// modo anônimo
-                    return this.n2 - this.n1;
-                },
-                multiplicar: () => { //arrow function
-                    return 4 * 3;
-                    //return this.n1 * this.n2; NÃO FUNCIONA
-                },
-                dividir(){ //forma mais enxuta o possível da função
-                    return 12 / 3;
-                }
-            
-            },
-
-            
-    })
-  
-    console.log(data(check))
-    
-
-</script>
-
 </html>
