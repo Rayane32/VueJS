@@ -44,51 +44,60 @@
 
 <body>
     <div id="app">
-        <div class="div-principal borda" :class="cor"> 
-            Cor: {{cor}} <br>
-            Posição X: {{cx}} <br>
-            Psição y: {{cy}}
-
-        </div>
+        <a href="https://jorgesantana.net.br"
+            target="_blank"
+            @click.prevent="prevenirComportamentoPadrao()"
+        >
+        Link
+        </a>
+        <br>
+        Mensagem: {{ msg }}
         <hr>
-        <div class="div-comum borda" 
-        @click="chamaCor('azul')"  
-        @mouseout="chamaCor('vermelho')">
-        </div>
+        <button @click.once="executarUmaVez()">Botão</button>
+        <p>Cliques: {{ cliques }} </p>
+        <hr>
+        <form @submit.prevent.once="prevenirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <p>Formulário: {{ formulario }}</p>
+        <hr>
+        <input type="text" @keyup="capturandoTeclas($event)" @keyup.backspace="apagandoTeclas(apaga)">
+        <p>Teclas: {{ teclas }}</p>
         
-        <div class="div-comum borda"
-         @click="chamaCor('rosa')" 
-         @mouseout="chamaCor('vermelho')">
-        </div>
-
-        <div class="div-comum borda"  
-         @mouseout="chamaCor('vermelho')"
-         @mousemove="chamaCor('cinza', $event)">
-        </div>
     </div>
 
-   
-
     <script>
+
         const vm = new Vue({
             el: '#app',
-            data: 
-            {
-                cor: 'branco',
-                cy : 0,
-                cx : 0
+            data: {
+                msg: '',
+                cliques: 0,
+                formulario: '',
+                teclas: '',
+                apaga: ''
+        
             },
-            methods:
-             {
-                chamaCor(c, evento){
-                    this.cor = c
-                    this.cx = evento.clientX
-                    this.cy = evento.clientY
+            methods: {
+                prevenirComportamentoPadrao() {
+                    this.msg = 'Comportamento padrão ativado'
+                },
+                executarUmaVez() {
+                    this.cliques++
+                },
+                prevenirUmaVez() {
+                    this.formulario = 'Prevenindo o comportamento padrão'
+                },
+                capturandoTeclas(event) {
+                    this.teclas += event.key
+                    
+                },
+                apagandoTeclas(apaga){
+                    this.teclas = apaga
                 }
             }
         })
-//Passando Parâmetros no Vue é igual da função!
-//Mas pq o this.xyz foi usado? foi usado porque eu esou chamando um atributo em 'data' e não um parâmetro direto no methods e input.
+
     </script>
 </body>
 </html>
