@@ -8,38 +8,87 @@
     <script src="./vue.js"></script>
 </head>
 
+<style>
+
+    .azul{
+        background-color: blue;
+    }
+
+    .rosa{
+        background-color: pink;
+    }
+
+    .vermelho{
+        background-color: red;
+    }
+
+    .cinza{
+        background-color: grey;
+    }
+
+    .div-principal{
+        height: 200px;
+        width: 200px;
+    }
+
+    .borda{
+        border: 1px solid;
+    }
+
+    .div-comum{
+        height: 50px;
+        width: 50px;
+        display: inline-block;
+    }
+</style>
+
 <body>
     <div id="app">
-        <button v-on:click="mostraAlert">Botão</button>
-        <input type="text" @keyup="mostraConsole">
-        <input type="text" @keyup="mostraConsole2( 'Rayane', 19, xyz)">
+        <div class="div-principal borda" :class="cor"> 
+            Cor: {{cor}} <br>
+            Posição X: {{cx}} <br>
+            Psição y: {{cy}}
+
+        </div>
+        <hr>
+        <div class="div-comum borda" 
+        @click="chamaCor('azul')"  
+        @mouseout="chamaCor('vermelho')">
+        </div>
+        
+        <div class="div-comum borda"
+         @click="chamaCor('rosa')" 
+         @mouseout="chamaCor('vermelho')">
+        </div>
+
+        <div class="div-comum borda"  
+         @mouseout="chamaCor('vermelho')"
+         @mousemove="chamaCor('cinza', $event)">
+        </div>
     </div>
 
-    <style>
-    </style>
+   
 
     <script>
         const vm = new Vue({
             el: '#app',
-            data: {
-                xyz: 'Dev em Vue'
+            data: 
+            {
+                cor: 'branco',
+                cy : 0,
+                cx : 0
             },
-            methods: {
-                mostraAlert(){
-                    alert('Mensagem de alerta')
-                },
-                mostraConsole(){
-                    console.log('Duda feia')
-                },
-                mostraConsole2( a, b){
-                    console.log(a),
-                    console.log(b),
-                    console.log(this.xyz)
+            methods:
+             {
+                chamaCor(c, evento){
+                    this.cor = c
+                    this.cx = evento.clientX
+                    this.cy = evento.clientY
                 }
             }
         })
 //Passando Parâmetros no Vue é igual da função!
-//Mas pq o this.xyz foi usado? foi usado porque eu esou chamando um atributo em 'data' e não um parâmetro direto no methods e input
+//Mas pq o this.xyz foi usado? foi usado porque eu esou chamando um atributo em 'data' e não um parâmetro direto no methods e input.
     </script>
 </body>
 </html>
