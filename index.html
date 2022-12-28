@@ -14,8 +14,8 @@
         {{ subtrair() }}<br>
         {{ multiplicar() }}<br>
         {{ dividir() }}
-        
     </p> 
+    <input type="checkbox" @click="check">
 </body>
 
 <script>
@@ -23,17 +23,21 @@
             el: '#App', //usa o # para id e . para class, só pra chamar
             data: //variável/atributo que vai guardar outras variáveis
             {
-                mensagem: 'Rayane ta começando'
+                mensagem: 'Rayane ta começando',
+                n1: 6,
+                n2: 10,
+                check: true + 'ola rayane'
             },
             methods: {
                 somar: function somar(){ //modo convencional
-                    return 3 + 4;
+                    return this.n1 + this.n2;
                 },
                 subtrair:  function(){// modo anônimo
-                    return 4 - 3;
+                    return this.n2 - this.n1;
                 },
                 multiplicar: () => { //arrow function
                     return 4 * 3;
+                    //return this.n1 * this.n2; NÃO FUNCIONA
                 },
                 dividir(){ //forma mais enxuta o possível da função
                     return 12 / 3;
@@ -43,7 +47,8 @@
 
             
     })
-    console.log(methods)
+  
+    console.log(data(check))
     
 
 </script>
