@@ -10,10 +10,10 @@
 <body>
     <h1>Simbora feiaaa</h1>
     <p id="App">
-        {{ mensagem }} <br>
-        {{idade}}<br>
-        {{comidas[2]}}<br>
-        {{curso.aluna}},{{curso.listaCurso[0].nome}}
+        {{ somar() }} <br>
+        {{ subtrair() }}<br>
+        {{ multiplicar() }}<br>
+        {{ dividir() }}
         
     </p> 
 </body>
@@ -23,33 +23,27 @@
             el: '#App', //usa o # para id e . para class, só pra chamar
             data: //variável/atributo que vai guardar outras variáveis
             {
-                mensagem: 'Rayane ta começando',
-                idade:19,
-                hobbie: 'escutar música',
-                comidas: [ 'maçã', 'batata', 'sal', 'doce'],
-                curso: {
-                    
-                    aluna: 'Rayane',
-                    idade: 22,
-                    colegio: 'ETE Cícero',
-                    listaCurso: [
-                    {
-                       nome: 'Proenem',
-                       custo: 12
-                    },
-                    {
-                        nome: 'Udemy',
-                        custo: 20
-                    }
-                ]
-                    
+                mensagem: 'Rayane ta começando'
+            },
+            methods: {
+                somar: function somar(){ //modo convencional
+                    return 3 + 4;
+                },
+                subtrair:  function(){// modo anônimo
+                    return 4 - 3;
+                },
+                multiplicar: () => { //arrow function
+                    return 4 * 3;
+                },
+                dividir(){ //forma mais enxuta o possível da função
+                    return 12 / 3;
                 }
-                
-                
-            }
-        
+            
+            },
+
+            
     })
-   
+    console.log(methods)
     
 
 </script>
